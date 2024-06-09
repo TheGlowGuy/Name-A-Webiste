@@ -18,18 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.getElementById('submitButton').addEventListener('click', function() {
-    const input = document.getElementById('inputBox').value.trim().toLowerCase();
+    const input = document.getElementById('inputBox').value.toLowerCase().trim();
     const searchEngine = document.getElementById('searchEngine').value;
     let redirectUrl;
 
-    // Filter links based on input
-    const filteredLinks = Object.keys(links).filter(link => link.startsWith(input));
-
-    if (filteredLinks.length > 0) {
-        // If there are matching links, redirect to the first one
-        redirectUrl = links[filteredLinks[0]];
+    if (links.hasOwnProperty(input)) {
+        redirectUrl = links[input];
     } else {
-        // If no matching links found, redirect to search engine
         if (searchEngine === 'google') {
             redirectUrl = 'https://www.google.com/search?q=';
         } else if (searchEngine === 'bing') {
@@ -41,10 +36,9 @@ document.getElementById('submitButton').addEventListener('click', function() {
         }
         redirectUrl += encodeURIComponent(input);
     }
+    
     window.location.href = redirectUrl;
-
-    // Clear input after search
-    document.getElementById('inputBox').value = '';
+    document.getElementById('inputBox').value = ''; // Clear the input box
 });
 
 // Handling enter key press

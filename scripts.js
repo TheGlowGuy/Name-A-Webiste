@@ -65,19 +65,20 @@ document.getElementById('searchEngine').addEventListener('change', function() {
 // Settings toggle
 document.getElementById('settingsButton').addEventListener('click', function() {
     const settingsContent = document.getElementById('settingsContent');
-    const settingsButton = document.getElementById('settingsButton');
-    settingsButton.style.display = 'none';
     settingsContent.style.display = 'block';
+});
+
+// Close Settings button
+document.getElementById('closeSettingsButton').addEventListener('click', function() {
+    const settingsContent = document.getElementById('settingsContent');
+    settingsContent.style.display = 'none';
 });
 
 // Finish Settings button
 document.getElementById('finishSettingsButton').addEventListener('click', function(event) {
     event.stopPropagation(); // Prevent click event from bubbling up
     const settingsContent = document.getElementById('settingsContent');
-    const settingsButton = document.getElementById('settingsButton');
     settingsContent.style.display = 'none';
-    settingsButton.style.display = 'block';
-    settingsButton.style.margin = '0 auto'; // Center the settings button
 });
 
 // Close settings when clicking outside
@@ -86,7 +87,5 @@ document.addEventListener('click', function(event) {
     const settingsButton = document.getElementById('settingsButton');
     if (!settingsContent.contains(event.target) && !settingsButton.contains(event.target)) {
         settingsContent.style.display = 'none';
-        settingsButton.style.display = 'block';
-        settingsButton.style.margin = '0 auto'; // Center the settings button
     }
 });
